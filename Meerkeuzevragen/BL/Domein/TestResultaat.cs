@@ -143,5 +143,20 @@ namespace BL.Domein
                 Score++;
             }
         }
+        public void LaadGebruikerAntwoordToe(GebruikerAntwoord gebruikerAntwoord)
+        {
+            if (gebruikerAntwoord == null)
+            {
+                throw new MeerkeuzeException("GebruikerAntwoord mag niet null zijn.");
+            }
+
+            if (gebruikerAntwoorden.Any(ga => ga.TestVraag.TestVraagId > 0 &&
+                                               ga.TestVraag.TestVraagId == gebruikerAntwoord.TestVraag.TestVraagId))
+            {
+                throw new MeerkeuzeException("Er bestaat al een antwoord voor deze testvraag.");
+            }
+
+            gebruikerAntwoorden.Add(gebruikerAntwoord);
+        }
     }
 }
