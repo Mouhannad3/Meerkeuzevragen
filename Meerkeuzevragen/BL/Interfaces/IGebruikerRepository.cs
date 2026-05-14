@@ -13,8 +13,6 @@ namespace BL.Interfaces
 
         Gebruiker? GeefGebruikerById(int gebruikerId);
 
-        IReadOnlyList<Gebruiker> GeefGebruikers();
-
         bool BestaatGebruiker(int gebruikerId);
     }
 }
