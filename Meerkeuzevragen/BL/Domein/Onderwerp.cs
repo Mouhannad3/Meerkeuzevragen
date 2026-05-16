@@ -47,5 +47,9 @@ namespace BL.Domein
             OnderwerpId = onderwerpId;
             Naam = naam;
         }
+        public override string ToString()
+        {
+            return Naam;
+        }
     }
 }

@@ -61,6 +61,9 @@ namespace UI
             IMeerkeuzeBestandslezer bestandslezer =
                 BestandslezerFactory.GeefMeerkeuzeBestandslezer(fileType);
 
+            IBulkResultaatBestandslezer bulkBestandslezer =
+                BestandslezerFactory.GeefBulkResultaatBestandslezer(fileType);
+
             onderwerpManager = new OnderwerpManager(onderwerpRepository);
 
             vraagManager = new VraagManager(
@@ -79,9 +82,10 @@ namespace UI
             );
 
             resultaatManager = new ResultaatManager(
-                resultaatRepository,
-                testRepository,
-                gebruikerRepository
+            resultaatRepository,
+            testRepository,
+            gebruikerRepository,
+            bulkBestandslezer
             );
 
             importManager = new ImportManager(
@@ -89,6 +93,58 @@ namespace UI
                 vraagRepository,
                 onderwerpRepository
             );
+        }
+        private void ButtonTestExporteren_Click(object sender, RoutedEventArgs e)
+        {
+            TestExporterenWindow window = new TestExporterenWindow(testManager);
+            window.Owner = this;
+            window.ShowDialog();
+        }
+
+        private void ButtonOnderwerpToevoegen_Click(object sender, RoutedEventArgs e)
+        {
+            OnderwerpToevoegenWindow window = new OnderwerpToevoegenWindow(onderwerpManager);
+            window.Owner = this;
+
+            if (window.ShowDialog() == true)
+            {
+                MessageBox.Show("Onderwerp werd toegevoegd.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+
+        private void ButtonVragenImporteren_Click(object sender, RoutedEventArgs e)
+        {
+            VragenImporterenWindow window = new VragenImporterenWindow(onderwerpManager, importManager);
+            window.Owner = this;
+
+            window.ShowDialog();
+        }
+
+        private void ButtonTestSamenstellen_Click(object sender, RoutedEventArgs e)
+        {
+            TestSamenstellenWindow window = new TestSamenstellenWindow(onderwerpManager, testManager);
+            window.Owner = this;
+            window.ShowDialog();
+        }
+
+        private void ButtonTestUitvoeren_Click(object sender, RoutedEventArgs e)
+        {
+            TestUitvoerenWindow window = new TestUitvoerenWindow(testManager, resultaatManager);
+            window.Owner = this;
+            window.ShowDialog();
+        }
+
+        private void ButtonResultatenBekijken_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Resultaten bekijken komt later.");
+        }
+
+        private void ButtonBulkResultaten_Click(object sender, RoutedEventArgs e)
+        {
+            BulkResultatenWindow window = new BulkResultatenWindow(resultaatManager);
+            window.Owner = this;
+            window.ShowDialog();
         }
     }
 }

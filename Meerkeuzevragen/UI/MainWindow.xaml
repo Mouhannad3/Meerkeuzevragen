@@ -5,8 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Meerkeuzevragen" Height="450" Width="500">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <TextBlock Grid.Row="0"
+                   Text="Meerkeuzevragen"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,25"/>
+
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    Width="260">
+
+            <Button Content="Onderwerp toevoegen"
+                    Height="35"
+                    Margin="0,5"
+                    Click="ButtonOnderwerpToevoegen_Click"/>
+
+            <Button Content="Vragen importeren"
+                    Height="35"
+                    Margin="0,5"
+                    Click="ButtonVragenImporteren_Click"/>
+
+            <Button Content="Test samenstellen"
+                    Height="35"
+                    Margin="0,5"
+                    Click="ButtonTestSamenstellen_Click"/>
+            
+            <Button Content="Test exporteren"
+        Height="35"
+        Margin="0,5"
+        Click="ButtonTestExporteren_Click"/>
+
+            <Button Content="Test uitvoeren"
+                    Height="35"
+                    Margin="0,5"
+                    Click="ButtonTestUitvoeren_Click"/>
+
+            <Button Content="Resultaten bekijken"
+                    Height="35"
+                    Margin="0,5"
+                    Click="ButtonResultatenBekijken_Click"/>
+            
+            <Button Content="Bulk resultaten verwerken"
+        Height="35"
+        Margin="0,5"
+        Click="ButtonBulkResultaten_Click"/>
+
+        </StackPanel>
     </Grid>
 </Window>

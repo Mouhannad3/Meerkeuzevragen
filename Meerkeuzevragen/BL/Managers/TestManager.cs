@@ -146,5 +146,26 @@ namespace BL.Managers
                 .Take(aantalVragen)
                 .ToList();
         }
+        public string MaakExportTekst(int testId)
+        {
+            Test test = GeefTestById(testId);
+
+            string tekst = $"Test: {test.Naam}\n";
+            tekst += $"Onderwerp: {test.Onderwerp.Naam}\n\n";
+
+            foreach (TestVraag testVraag in test.TestVragen.OrderBy(tv => tv.Volgorde))
+            {
+                tekst += $"{testVraag.Volgorde}. {testVraag.Vraag.Tekst}\n\n";
+
+                foreach (TestVraagAntwoord antwoord in testVraag.TestVraagAntwoorden.OrderBy(a => a.Volgorde))
+                {
+                    tekst += $"{antwoord.Letter}. {antwoord.Antwoord.Tekst}\n";
+                }
+
+                tekst += "\n";
+            }
+
+            return tekst;
+        }
     }
 }

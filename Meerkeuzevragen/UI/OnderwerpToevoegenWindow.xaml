@@ -1,0 +1,56 @@
+﻿<Window x:Class="UI.OnderwerpToevoegenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+      Title="Onderwerp toevoegen" Height="180" Width="400"
+       WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Nieuw onderwerp"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Margin="0,0,0,15"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0"
+                   Content="Naam:"
+                   VerticalAlignment="Center"
+                   Margin="0,0,10,0"/>
+
+            <TextBox Grid.Column="1"
+                     Name="TextBoxNaam"
+                     Height="25"/>
+        </Grid>
+
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Content="Annuleren"
+                    Width="90"
+                    Margin="5"
+                    Click="ButtonAnnuleren_Click"/>
+
+            <Button Content="Opslaan"
+                    Width="90"
+                    Margin="5"
+                    IsDefault="True"
+                    Click="ButtonOpslaan_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

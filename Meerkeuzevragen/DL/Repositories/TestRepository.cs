@@ -242,6 +242,7 @@ namespace DL.Repositories
 
             foreach (TestVraag testVraag in testVragen)
             {
+                LaadAntwoordenVanVraag(conn, testVraag.Vraag);
                 LaadTestVraagAntwoorden(conn, testVraag);
                 test.VoegTestVraagToe(testVraag);
             }
@@ -278,6 +279,29 @@ namespace DL.Repositories
                 );
 
                 testVraag.VoegTestVraagAntwoordToe(testVraagAntwoord);
+            }
+        }
+        private void LaadAntwoordenVanVraag(SqlConnection conn, Vraag vraag)
+        {
+            string sql = @"SELECT antwoord_id, tekst, is_correct
+                   FROM Antwoord
+                   WHERE vraag_id = @vraag_id
+                   ORDER BY antwoord_id";
+
+            using SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.Add("@vraag_id", SqlDbType.Int).Value = vraag.VraagId;
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Antwoord antwoord = new Antwoord(
+                    (int)reader["antwoord_id"],
+                    reader["tekst"].ToString()!,
+                    (bool)reader["is_correct"]
+                );
+
+                vraag.VoegAntwoordToe(antwoord);
             }
         }
     }

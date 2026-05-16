@@ -125,5 +125,9 @@ namespace BL.Domein
 
             testVragen.Add(testVraag);
         }
+        public override string ToString()
+        {
+            return Naam;
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace BL.Managers
 {
     public class ResultaatManager
     {
+        private readonly IBulkResultaatBestandslezer bulkResultaatBestandslezer;
         private readonly IResultaatRepository resultaatRepository;
         private readonly ITestRepository testRepository;
         private readonly IGebruikerRepository gebruikerRepository;
@@ -18,7 +19,8 @@ namespace BL.Managers
         public ResultaatManager(
             IResultaatRepository resultaatRepository,
             ITestRepository testRepository,
-            IGebruikerRepository gebruikerRepository)
+            IGebruikerRepository gebruikerRepository,
+            IBulkResultaatBestandslezer bulkResultaatBestandslezer)
         {
             this.resultaatRepository = resultaatRepository
                 ?? throw new ArgumentNullException(nameof(resultaatRepository));
@@ -28,6 +30,9 @@ namespace BL.Managers
 
             this.gebruikerRepository = gebruikerRepository
                 ?? throw new ArgumentNullException(nameof(gebruikerRepository));
+
+            this.bulkResultaatBestandslezer = bulkResultaatBestandslezer
+                ?? throw new ArgumentNullException(nameof(bulkResultaatBestandslezer));
         }
 
         public TestResultaat VerbeterTest(int testId, int gebruikerId, string antwoorden)
@@ -125,6 +130,36 @@ namespace BL.Managers
             }
 
             return resultaatRepository.GeefResultatenByGebruiker(gebruikerId);
+        }
+        public List<TestResultaat> VerwerkBulkResultaten(string pad)
+        {
+            if (string.IsNullOrWhiteSpace(pad))
+            {
+                throw new MeerkeuzeException("Pad mag niet leeg zijn.");
+            }
+
+            List<(int TestId, int GebruikerId, string Antwoorden)> lijnen =
+                bulkResultaatBestandslezer.LeesBulkResultaten(pad);
+
+            if (lijnen.Count == 0)
+            {
+                throw new MeerkeuzeException("Bulkbestand bevat geen resultaten.");
+            }
+
+            List<TestResultaat> resultaten = new();
+
+            foreach (var lijn in lijnen)
+            {
+                TestResultaat resultaat = VerbeterTest(
+                    lijn.TestId,
+                    lijn.GebruikerId,
+                    lijn.Antwoorden
+                );
+
+                resultaten.Add(resultaat);
+            }
+
+            return resultaten;
         }
     }
 }
