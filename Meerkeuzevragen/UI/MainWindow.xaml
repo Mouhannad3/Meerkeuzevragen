@@ -49,10 +49,6 @@
                     Margin="0,5"
                     Click="ButtonTestUitvoeren_Click"/>
 
-            <Button Content="Resultaten bekijken"
-                    Height="35"
-                    Margin="0,5"
-                    Click="ButtonResultatenBekijken_Click"/>
             
             <Button Content="Bulk resultaten verwerken"
         Height="35"

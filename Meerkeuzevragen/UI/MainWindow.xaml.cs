@@ -135,10 +135,6 @@ namespace UI
             window.ShowDialog();
         }
 
-        private void ButtonResultatenBekijken_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Resultaten bekijken komt later.");
-        }
 
         private void ButtonBulkResultaten_Click(object sender, RoutedEventArgs e)
         {
