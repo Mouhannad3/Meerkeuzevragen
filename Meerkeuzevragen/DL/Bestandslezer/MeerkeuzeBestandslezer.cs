@@ -1,11 +1,6 @@
 ﻿using BL.Domein;
 using BL.Exceptions;
 using BL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DL.Bestandslezer
 {
@@ -121,7 +116,7 @@ namespace DL.Bestandslezer
                     while (index < lijnen.Count && IsAntwoordLijn(lijnen[index]))
                     {
                         char letter = char.ToUpper(lijnen[index].Trim()[0]);
-                        string antwoordTekst = lijnen[index].Trim().Substring(2).Trim();
+                        string antwoordTekst = HaalAntwoordTekstUitAntwoordLijn(lijnen[index]);
 
                         antwoorden.Add(letter, antwoordTekst);
                         index++;
@@ -137,7 +132,7 @@ namespace DL.Bestandslezer
                         throw new MeerkeuzeException("Correct antwoord ontbreekt bij een vraag.");
                     }
 
-                    string correctTekst = lijnen[index].Trim().Replace("Correct:", "").Replace("correct:", "").Trim();
+                    string correctTekst = HaalCorrectTekstUitCorrectLijn(lijnen[index]);
                     char correcteLetter = HaalEersteLetter(correctTekst);
                     index++;
 
@@ -163,12 +158,14 @@ namespace DL.Bestandslezer
             }
 
             List<string> vraagLijnen = new();
+
             for (int i = 0; i < antwoordenIndex; i++)
             {
                 vraagLijnen.Add(lijnen[i]);
             }
 
             List<char> correcteLetters = new();
+
             for (int i = antwoordenIndex + 1; i < lijnen.Count; i++)
             {
                 if (!string.IsNullOrWhiteSpace(lijnen[i]))
@@ -211,7 +208,7 @@ namespace DL.Bestandslezer
                     while (index < vraagLijnen.Count && IsAntwoordLijn(vraagLijnen[index]))
                     {
                         char letter = char.ToUpper(vraagLijnen[index].Trim()[0]);
-                        string antwoordTekst = vraagLijnen[index].Trim().Substring(2).Trim();
+                        string antwoordTekst = HaalAntwoordTekstUitAntwoordLijn(vraagLijnen[index]);
 
                         antwoorden.Add(letter, antwoordTekst);
                         index++;
@@ -270,7 +267,11 @@ namespace DL.Bestandslezer
 
             foreach (KeyValuePair<char, string> antwoord in antwoorden)
             {
-                Antwoord nieuwAntwoord = new Antwoord(antwoord.Value, antwoord.Key == correcteLetter);
+                Antwoord nieuwAntwoord = new Antwoord(
+                    antwoord.Value,
+                    antwoord.Key == correcteLetter
+                );
+
                 vraag.VoegAntwoordToe(nieuwAntwoord);
             }
 
@@ -310,13 +311,33 @@ namespace DL.Bestandslezer
                 return false;
             }
 
-            return char.IsLetter(trimmed[0]) && trimmed[1] == '.';
+            return char.IsLetter(trimmed[0]) &&
+                   (trimmed[1] == '.' || trimmed[1] == ')');
         }
 
         private string HaalVraagTekstUitVraagLijn(string lijn)
         {
             int puntIndex = lijn.IndexOf('.');
             return lijn.Substring(puntIndex + 1).Trim();
+        }
+
+        private string HaalAntwoordTekstUitAntwoordLijn(string lijn)
+        {
+            string trimmed = lijn.Trim();
+            return trimmed.Substring(2).Trim();
+        }
+
+        private string HaalCorrectTekstUitCorrectLijn(string lijn)
+        {
+            string correctLijn = lijn.Trim();
+            int dubbelePuntIndex = correctLijn.IndexOf(':');
+
+            if (dubbelePuntIndex < 0)
+            {
+                throw new MeerkeuzeException("Correct antwoord heeft geen dubbele punt.");
+            }
+
+            return correctLijn.Substring(dubbelePuntIndex + 1).Trim();
         }
 
         private char HaalEersteLetter(string tekst)

@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="GwC8GQyitgesYa7ee3Rw">
-    <mxGraphModel dx="1873" dy="1138" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" background="light-dark(#ffffff, #050505)" math="0" shadow="0">
+    <mxGraphModel dx="2575" dy="1565" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1600" background="light-dark(#ffffff, #050505)" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -90,20 +90,35 @@
         <mxCell id="LDqxDNB5Ae4xMkVD4wL9-43" parent="LDqxDNB5Ae4xMkVD4wL9-40" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ TestVraagAntwoord(testVraag : TestVraag,&amp;nbsp;antwoord : Antwoord,&amp;nbsp;letter : char, volgorde : int)&amp;nbsp;&lt;br&gt;+ TestVraagAntwoord(testVraagAntwoordId : int,&amp;nbsp;testVraag : TestVraag,&amp;nbsp;antwoord : Antwoord,&amp;nbsp;letter : char, volgorde : int)" vertex="1">
           <mxGeometry height="62" width="660" y="118" as="geometry" />
         </mxCell>
+        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-58" edge="1" parent="1" source="LDqxDNB5Ae4xMkVD4wL9-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="LDqxDNB5Ae4xMkVD4wL9-48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-44" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Gebruiker&amp;nbsp; &amp;nbsp;" vertex="1">
+          <mxGeometry height="130" width="240" x="2400" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-45" parent="LDqxDNB5Ae4xMkVD4wL9-44" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ GebruikerId : int&amp;nbsp;&lt;br&gt;+ Naam : string&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;" vertex="1">
+          <mxGeometry height="44" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-46" parent="LDqxDNB5Ae4xMkVD4wL9-44" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="240" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-47" parent="LDqxDNB5Ae4xMkVD4wL9-44" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Gebruiker(naam : string)&amp;nbsp;&lt;br&gt;+ Gebruiker(gebruikerId : int, naam : string)" vertex="1">
+          <mxGeometry height="52" width="240" y="78" as="geometry" />
+        </mxCell>
         <mxCell id="LDqxDNB5Ae4xMkVD4wL9-65" edge="1" parent="1" source="LDqxDNB5Ae4xMkVD4wL9-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="LDqxDNB5Ae4xMkVD4wL9-52">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="LDqxDNB5Ae4xMkVD4wL9-48" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="TestResultaat " vertex="1">
-          <mxGeometry height="220" width="710" x="2160" y="670" as="geometry" />
+          <mxGeometry height="220" width="720" x="2160" y="670" as="geometry" />
         </mxCell>
-        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-49" parent="LDqxDNB5Ae4xMkVD4wL9-48" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ TestResultaatId : int&lt;br&gt;+ Test : Test&lt;br&gt;+ GebruikerId : int&lt;br&gt;+ Score : int&lt;br&gt;+ TotaalAantalVragen : int&lt;br&gt;+ UitgevoerdOp : DateTime&lt;br&gt;+ GebruikerAntwoorden : IReadOnlyList&amp;lt;GebruikerAntwoord&amp;gt;" vertex="1">
-          <mxGeometry height="114" width="710" y="26" as="geometry" />
+        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-49" parent="LDqxDNB5Ae4xMkVD4wL9-48" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ TestResultaatId : int&amp;nbsp;&lt;br&gt;+ Test : Test&amp;nbsp;&lt;br&gt;+ Gebruiker : Gebruiker&lt;br&gt;+ Score : int&amp;nbsp;&lt;br&gt;+ TotaalAantalVragen : int&amp;nbsp;&lt;br&gt;+ UitgevoerdOp : DateTime&amp;nbsp;&lt;br&gt;+ GebruikerAntwoorden : IReadOnlyList&amp;lt;GebruikerAntwoord&amp;gt;&amp;nbsp;" vertex="1">
+          <mxGeometry height="114" width="720" y="26" as="geometry" />
         </mxCell>
         <mxCell id="LDqxDNB5Ae4xMkVD4wL9-50" parent="LDqxDNB5Ae4xMkVD4wL9-48" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
-          <mxGeometry height="8" width="710" y="140" as="geometry" />
+          <mxGeometry height="8" width="720" y="140" as="geometry" />
         </mxCell>
-        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-51" parent="LDqxDNB5Ae4xMkVD4wL9-48" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ TestResultaat(test : Test, gebruikerId : int, totaalAantalVragen : int)&lt;br&gt;+ TestResultaat(testResultaatId : int, test : Test, gebruikerId : int, score : int, totaalAantalVragen : int, uitgevoerdOp : DateTime)&lt;br&gt;+ VoegGebruikerAntwoordToe(gebruikerAntwoord : GebruikerAntwoord) : void&lt;br&gt;+ LaadGebruikerAntwoordToe(gebruikerAntwoord : GebruikerAntwoord) : void" vertex="1">
-          <mxGeometry height="72" width="710" y="148" as="geometry" />
+        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-51" parent="LDqxDNB5Ae4xMkVD4wL9-48" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ TestResultaat(test : Test, gebruiker : Gebruiker,&amp;nbsp;totaalAantalVragen : int)&amp;nbsp;&lt;br&gt;+ TestResultaat(testResultaatId : int, test : Test,&amp;nbsp;gebruiker : Gebruiker, score : int,&amp;nbsp;totaalAantalVragen : int,&amp;nbsp;uitgevoerdOp : DateTime)&amp;nbsp;&lt;br&gt;+ VoegGebruikerAntwoordToe(&amp;nbsp;gebruikerAntwoord : GebruikerAntwoord) : void&lt;br&gt;+ LaadGebruikerAntwoordToe(gebruikerAntwoord : GebruikerAntwoord) : void&amp;nbsp;&amp;nbsp;" vertex="1">
+          <mxGeometry height="72" width="720" y="148" as="geometry" />
         </mxCell>
         <mxCell id="LDqxDNB5Ae4xMkVD4wL9-52" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="GebruikerAntwoord" vertex="1">
           <mxGeometry height="176" width="760" x="1950" y="1050" as="geometry" />
@@ -146,6 +161,15 @@
         </mxCell>
         <mxCell id="LDqxDNB5Ae4xMkVD4wL9-73" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;" value="0..*" vertex="1">
           <mxGeometry height="30" width="60" x="1050" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-74" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=17;" value="1" vertex="1">
+          <mxGeometry height="30" width="60" x="2510" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-76" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=18;" value="maakt" vertex="1">
+          <mxGeometry height="30" width="60" x="2510" y="556" as="geometry" />
+        </mxCell>
+        <mxCell id="LDqxDNB5Ae4xMkVD4wL9-79" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=17;" value="0..*" vertex="1">
+          <mxGeometry height="30" width="60" x="2510" y="630" as="geometry" />
         </mxCell>
         <mxCell id="LDqxDNB5Ae4xMkVD4wL9-80" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=20;" value="1" vertex="1">
           <mxGeometry height="30" width="60" x="2100" y="430" as="geometry" />

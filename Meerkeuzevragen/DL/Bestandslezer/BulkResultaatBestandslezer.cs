@@ -1,10 +1,5 @@
 ﻿using BL.Exceptions;
 using BL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DL.Bestandslezer
 {
@@ -25,31 +20,50 @@ namespace DL.Bestandslezer
 
                 string? lijn;
                 bool eersteLijn = true;
+                int lijnNummer = 0;
 
                 while ((lijn = sr.ReadLine()) != null)
                 {
+                    lijnNummer++;
+
                     if (eersteLijn)
                     {
                         eersteLijn = false;
+                        continue;
                     }
-                    else
+
+                    if (string.IsNullOrWhiteSpace(lijn))
                     {
-                        if (!string.IsNullOrWhiteSpace(lijn))
-                        {
-                            string[] delen = lijn.Split(',');
-
-                            if (delen.Length != 3)
-                            {
-                                throw new MeerkeuzeException("Ongeldig bulkbestand. Verwacht: TestId,IDGebruiker,Antwoorden.");
-                            }
-
-                            int testId = int.Parse(delen[0]);
-                            int gebruikerId = int.Parse(delen[1]);
-                            string antwoorden = delen[2].Trim();
-
-                            resultaten.Add((testId, gebruikerId, antwoorden));
-                        }
+                        continue;
                     }
+
+                    string[] delen = lijn.Split(',');
+
+                    if (delen.Length != 3)
+                    {
+                        throw new MeerkeuzeException(
+                            $"Ongeldig bulkbestand op lijn {lijnNummer}. Verwacht: TestId,IDGebruiker,Antwoorden."
+                        );
+                    }
+
+                    if (!int.TryParse(delen[0].Trim(), out int testId))
+                    {
+                        throw new MeerkeuzeException($"TestId moet een getal zijn op lijn {lijnNummer}.");
+                    }
+
+                    if (!int.TryParse(delen[1].Trim(), out int gebruikerId))
+                    {
+                        throw new MeerkeuzeException($"IDGebruiker moet een getal zijn op lijn {lijnNummer}.");
+                    }
+
+                    string antwoorden = delen[2].Trim().ToUpper();
+
+                    if (string.IsNullOrWhiteSpace(antwoorden))
+                    {
+                        throw new MeerkeuzeException($"Antwoorden mogen niet leeg zijn op lijn {lijnNummer}.");
+                    }
+
+                    resultaten.Add((testId, gebruikerId, antwoorden));
                 }
             }
             catch (MeerkeuzeException)
