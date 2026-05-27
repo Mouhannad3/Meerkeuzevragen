@@ -86,44 +86,72 @@ namespace UI
             );
         }
 
-        private void ButtonTestExporteren_Click(object sender, RoutedEventArgs e)
-        {
-            TestExporterenWindow window = new TestExporterenWindow(testManager);
-            window.ShowDialog();
-        }
-
         private void ButtonOnderwerpToevoegen_Click(object sender, RoutedEventArgs e)
         {
             OnderwerpToevoegenWindow window = new OnderwerpToevoegenWindow(onderwerpManager);
 
             if (window.ShowDialog() == true)
             {
-                MessageBox.Show("Onderwerp werd toegevoegd.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    "Onderwerp werd toegevoegd.",
+                    "Info",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
             }
         }
 
         private void ButtonVragenImporteren_Click(object sender, RoutedEventArgs e)
         {
-            VragenImporterenWindow window = new VragenImporterenWindow(onderwerpManager, importManager);
+            VragenImporterenWindow window = new VragenImporterenWindow(
+                onderwerpManager,
+                importManager
+            );
+
+            window.ShowDialog();
+        }
+
+        private void ButtonVragenBeheren_Click(object sender, RoutedEventArgs e)
+        {
+            VragenBeheren window = new VragenBeheren(
+                onderwerpManager,
+                vraagManager
+            );
 
             window.ShowDialog();
         }
 
         private void ButtonTestSamenstellen_Click(object sender, RoutedEventArgs e)
         {
-            TestSamenstellenWindow window = new TestSamenstellenWindow(onderwerpManager, testManager);
-            window.Owner = this;            window.ShowDialog();
+            TestSamenstellenWindow window = new TestSamenstellenWindow(
+                onderwerpManager,
+                testManager
+            );
+
+            window.ShowDialog();
+        }
+
+        private void ButtonTestExporteren_Click(object sender, RoutedEventArgs e)
+        {
+            TestExporterenWindow window = new TestExporterenWindow(testManager);
+
+            window.ShowDialog();
         }
 
         private void ButtonTestUitvoeren_Click(object sender, RoutedEventArgs e)
         {
-            TestUitvoerenWindow window = new TestUitvoerenWindow(testManager, resultaatManager);
+            TestUitvoerenWindow window = new TestUitvoerenWindow(
+                testManager,
+                resultaatManager
+            );
+
             window.ShowDialog();
         }
 
         private void ButtonBulkResultaten_Click(object sender, RoutedEventArgs e)
         {
             BulkResultatenWindow window = new BulkResultatenWindow(resultaatManager);
+
             window.ShowDialog();
         }
     }

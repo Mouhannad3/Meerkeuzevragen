@@ -84,14 +84,6 @@ CREATE TABLE TestVraagAntwoord (
 );
 GO
 
-CREATE TABLE Gebruiker (
-    gebruiker_id INT IDENTITY(1,1) NOT NULL,
-    naam NVARCHAR(100) NOT NULL,
-
-    CONSTRAINT pk_gebruiker PRIMARY KEY CLUSTERED (gebruiker_id ASC)
-);
-GO
-
 CREATE TABLE TestResultaat (
     test_resultaat_id INT IDENTITY(1,1) NOT NULL,
     test_id INT NOT NULL,
@@ -102,7 +94,6 @@ CREATE TABLE TestResultaat (
 
     CONSTRAINT pk_testresultaat PRIMARY KEY CLUSTERED (test_resultaat_id ASC),
     CONSTRAINT fk_testresultaat_test FOREIGN KEY (test_id) REFERENCES Test(test_id),
-    CONSTRAINT fk_testresultaat_gebruiker FOREIGN KEY (gebruiker_id) REFERENCES Gebruiker(gebruiker_id),
     CONSTRAINT ck_testresultaat_score CHECK (score >= 0),
     CONSTRAINT ck_testresultaat_totaal_aantal_vragen CHECK (totaal_aantal_vragen > 0),
     CONSTRAINT ck_testresultaat_score_max CHECK (score <= totaal_aantal_vragen)

@@ -1,7 +1,6 @@
 ﻿using BL.Domein;
 using BL.Exceptions;
 using BL.Managers;
-using Microsoft.Win32;
 using System.IO;
 using System.Windows;
 
@@ -33,34 +32,33 @@ namespace UI
 
                 if (test == null)
                 {
-                    MessageBox.Show("Kies eerst een test.", "Fout", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Kies eerst een test.");
                     return;
                 }
 
-                SaveFileDialog dialog = new SaveFileDialog();
-                dialog.Filter = "Tekstbestand (*.txt)|*.txt";
-                dialog.FileName = test.Naam + ".txt";
-
-                if (dialog.ShowDialog() == true)
+                if (string.IsNullOrWhiteSpace(TextBoxPad.Text))
                 {
-                    string tekst = testManager.MaakExportTekst(test.TestId);
-
-                    using StreamWriter sw = new StreamWriter(dialog.FileName);
-                    sw.Write(tekst);
-
-                    MessageBox.Show("Test werd geëxporteerd.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    DialogResult = true;
-                    Close();
+                    MessageBox.Show("Geef eerst het pad van het bestand in.");
+                    return;
                 }
+
+                string tekst = testManager.MaakExportTekst(test.TestId);
+
+                using StreamWriter sw = new StreamWriter(TextBoxPad.Text);
+                sw.Write(tekst);
+
+                MessageBox.Show("Test werd geëxporteerd.");
+
+                DialogResult = true;
+                Close();
             }
             catch (MeerkeuzeException ex)
             {
-                MessageBox.Show(ex.Message, "Fout", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(ex.Message);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Onverwachte fout: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Fout bij exporteren: " + ex.Message);
             }
         }
 

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
-        Title="Meerkeuzevragen" Height="450" Width="500">
+        Title="Meerkeuzevragen" Height="500" Width="500">
+
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -34,26 +35,30 @@
                     Margin="0,5"
                     Click="ButtonVragenImporteren_Click"/>
 
+            <Button Content="Vragen beheren"
+                    Height="35"
+                    Margin="0,5"
+                    Click="ButtonVragenBeheren_Click"/>
+
             <Button Content="Test samenstellen"
                     Height="35"
                     Margin="0,5"
                     Click="ButtonTestSamenstellen_Click"/>
-            
+
             <Button Content="Test exporteren"
-        Height="35"
-        Margin="0,5"
-        Click="ButtonTestExporteren_Click"/>
+                    Height="35"
+                    Margin="0,5"
+                    Click="ButtonTestExporteren_Click"/>
 
             <Button Content="Test uitvoeren"
                     Height="35"
                     Margin="0,5"
                     Click="ButtonTestUitvoeren_Click"/>
 
-            
             <Button Content="Bulk resultaten verwerken"
-        Height="35"
-        Margin="0,5"
-        Click="ButtonBulkResultaten_Click"/>
+                    Height="35"
+                    Margin="0,5"
+                    Click="ButtonBulkResultaten_Click"/>
 
         </StackPanel>
     </Grid>
