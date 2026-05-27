@@ -5,7 +5,7 @@ namespace BL.Domein
     public class Antwoord
     {
         private int antwoordId;
-        private string tekst = string.Empty;
+        private string tekst = "";
         private bool isCorrect;
 
         public int AntwoordId
@@ -36,11 +36,11 @@ namespace BL.Domein
             }
         }
 
-        public bool IsCorrect
-        {
-            get { return isCorrect; }
-            set { isCorrect = value; }
-        }
+    public bool IsCorrect
+    {
+        get { return isCorrect; }
+        private set { isCorrect = value; }
+    }
 
         // Voor een nieuw antwoord vóór opslaan in de database
         public Antwoord(string tekst, bool isCorrect)

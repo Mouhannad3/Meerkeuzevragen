@@ -6,7 +6,7 @@ namespace BL.Domein
     {
         private int testResultaatId;
         private Test test = null!;
-        private Gebruiker gebruiker = null!;
+        private int gebruikerId;
         private int score;
         private int totaalAantalVragen;
         private DateTime uitgevoerdOp;
@@ -41,17 +41,17 @@ namespace BL.Domein
             }
         }
 
-        public Gebruiker Gebruiker
+        public int GebruikerId
         {
-            get { return gebruiker; }
-            set
+            get { return gebruikerId; }
+            private set
             {
-                if (value == null)
+                if (value <= 0)
                 {
-                    throw new MeerkeuzeException("Gebruiker mag niet null zijn.");
+                    throw new MeerkeuzeException("GebruikerId moet groter zijn dan 0.");
                 }
 
-                gebruiker = value;
+                gebruikerId = value;
             }
         }
 
@@ -103,23 +103,23 @@ namespace BL.Domein
         }
 
         // Nieuwe uitvoering vóór opslaan in database
-        public TestResultaat(Test test, Gebruiker gebruiker, int totaalAantalVragen)
+        public TestResultaat(Test test, int gebruikerId, int totaalAantalVragen)
         {
             Test = test;
-            Gebruiker = gebruiker;
+            GebruikerId = gebruikerId;
             TotaalAantalVragen = totaalAantalVragen;
             Score = 0;
             UitgevoerdOp = DateTime.Now;
         }
 
         // Voor lezen uit database
-        public TestResultaat(int testResultaatId, Test test, Gebruiker gebruiker, int score, int totaalAantalVragen, DateTime uitgevoerdOp)
+        public TestResultaat(int testResultaatId, Test test, int gebruikerId, int score, int totaalAantalVragen, DateTime uitgevoerdOp)
         {
             TestResultaatId = testResultaatId;
             Test = test;
-            Gebruiker = gebruiker;
-            Score = score;
+            GebruikerId = gebruikerId;
             TotaalAantalVragen = totaalAantalVragen;
+            Score = score;
             UitgevoerdOp = uitgevoerdOp;
         }
 

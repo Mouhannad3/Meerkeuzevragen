@@ -1,12 +1,7 @@
 ﻿using BL.Domein;
 using BL.Interfaces;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DL.Repositories
 {
@@ -40,7 +35,7 @@ namespace DL.Repositories
                 using SqlCommand cmdResultaat = new SqlCommand(sqlResultaat, conn, transaction);
 
                 cmdResultaat.Parameters.Add("@test_id", SqlDbType.Int).Value = testResultaat.Test.TestId;
-                cmdResultaat.Parameters.Add("@gebruiker_id", SqlDbType.Int).Value = testResultaat.Gebruiker.GebruikerId;
+                cmdResultaat.Parameters.Add("@gebruiker_id", SqlDbType.Int).Value = testResultaat.GebruikerId;
                 cmdResultaat.Parameters.Add("@score", SqlDbType.Int).Value = testResultaat.Score;
                 cmdResultaat.Parameters.Add("@totaal_aantal_vragen", SqlDbType.Int).Value = testResultaat.TotaalAantalVragen;
                 cmdResultaat.Parameters.Add("@uitgevoerd_op", SqlDbType.DateTime2).Value = testResultaat.UitgevoerdOp;
@@ -73,14 +68,14 @@ namespace DL.Repositories
             using SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
 
-            string sql = @"SELECT tr.test_resultaat_id, tr.score, tr.totaal_aantal_vragen, tr.uitgevoerd_op,
-                                  t.test_id, t.naam AS test_naam, t.aangemaakt_op, t.aantal_antwoorden_per_vraag,
-                                  o.onderwerp_id, o.naam AS onderwerp_naam,
-                                  g.gebruiker_id, g.naam AS gebruiker_naam
+            string sql = @"SELECT tr.test_resultaat_id, tr.gebruiker_id, tr.score, 
+                                  tr.totaal_aantal_vragen, tr.uitgevoerd_op,
+                                  t.test_id, t.naam AS test_naam, t.aangemaakt_op, 
+                                  t.aantal_antwoorden_per_vraag,
+                                  o.onderwerp_id, o.naam AS onderwerp_naam
                            FROM TestResultaat tr
                            JOIN Test t ON tr.test_id = t.test_id
                            JOIN Onderwerp o ON t.onderwerp_id = o.onderwerp_id
-                           JOIN Gebruiker g ON tr.gebruiker_id = g.gebruiker_id
                            WHERE tr.test_resultaat_id = @test_resultaat_id";
 
             using SqlCommand cmd = new SqlCommand(sql, conn);
@@ -109,14 +104,14 @@ namespace DL.Repositories
             using SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
 
-            string sql = @"SELECT tr.test_resultaat_id, tr.score, tr.totaal_aantal_vragen, tr.uitgevoerd_op,
-                                  t.test_id, t.naam AS test_naam, t.aangemaakt_op, t.aantal_antwoorden_per_vraag,
-                                  o.onderwerp_id, o.naam AS onderwerp_naam,
-                                  g.gebruiker_id, g.naam AS gebruiker_naam
+            string sql = @"SELECT tr.test_resultaat_id, tr.gebruiker_id, tr.score, 
+                                  tr.totaal_aantal_vragen, tr.uitgevoerd_op,
+                                  t.test_id, t.naam AS test_naam, t.aangemaakt_op, 
+                                  t.aantal_antwoorden_per_vraag,
+                                  o.onderwerp_id, o.naam AS onderwerp_naam
                            FROM TestResultaat tr
                            JOIN Test t ON tr.test_id = t.test_id
                            JOIN Onderwerp o ON t.onderwerp_id = o.onderwerp_id
-                           JOIN Gebruiker g ON tr.gebruiker_id = g.gebruiker_id
                            WHERE tr.test_id = @test_id
                            ORDER BY tr.uitgevoerd_op DESC";
 
@@ -140,14 +135,14 @@ namespace DL.Repositories
             using SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
 
-            string sql = @"SELECT tr.test_resultaat_id, tr.score, tr.totaal_aantal_vragen, tr.uitgevoerd_op,
-                                  t.test_id, t.naam AS test_naam, t.aangemaakt_op, t.aantal_antwoorden_per_vraag,
-                                  o.onderwerp_id, o.naam AS onderwerp_naam,
-                                  g.gebruiker_id, g.naam AS gebruiker_naam
+            string sql = @"SELECT tr.test_resultaat_id, tr.gebruiker_id, tr.score, 
+                                  tr.totaal_aantal_vragen, tr.uitgevoerd_op,
+                                  t.test_id, t.naam AS test_naam, t.aangemaakt_op, 
+                                  t.aantal_antwoorden_per_vraag,
+                                  o.onderwerp_id, o.naam AS onderwerp_naam
                            FROM TestResultaat tr
                            JOIN Test t ON tr.test_id = t.test_id
                            JOIN Onderwerp o ON t.onderwerp_id = o.onderwerp_id
-                           JOIN Gebruiker g ON tr.gebruiker_id = g.gebruiker_id
                            WHERE tr.gebruiker_id = @gebruiker_id
                            ORDER BY tr.uitgevoerd_op DESC";
 
@@ -179,15 +174,10 @@ namespace DL.Repositories
                 (int)reader["aantal_antwoorden_per_vraag"]
             );
 
-            Gebruiker gebruiker = new Gebruiker(
-                (int)reader["gebruiker_id"],
-                reader["gebruiker_naam"].ToString()!
-            );
-
             return new TestResultaat(
                 (int)reader["test_resultaat_id"],
                 test,
-                gebruiker,
+                (int)reader["gebruiker_id"],
                 (int)reader["score"],
                 (int)reader["totaal_aantal_vragen"],
                 (DateTime)reader["uitgevoerd_op"]

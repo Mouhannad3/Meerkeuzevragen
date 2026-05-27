@@ -43,16 +43,6 @@ namespace Utils
             }
         }
 
-        public static IGebruikerRepository GeefGebruikerRepository(string databaseType, string connectionString)
-        {
-            switch (databaseType)
-            {
-                case "SQL":
-                    return new GebruikerRepository(connectionString);
-                default:
-                    throw new Exception("Onbekend databaseType voor GebruikerRepository.");
-            }
-        }
 
         public static IResultaatRepository GeefResultaatRepository(string databaseType, string connectionString)
         {

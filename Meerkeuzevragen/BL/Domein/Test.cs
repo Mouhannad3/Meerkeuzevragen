@@ -5,7 +5,7 @@ namespace BL.Domein
     public class Test
     {
         private int testId;
-        private string naam = string.Empty;
+        private string naam = "";
         private DateTime aangemaaktOp;
         private int aantalAntwoordenPerVraag;
         private Onderwerp onderwerp = null!;

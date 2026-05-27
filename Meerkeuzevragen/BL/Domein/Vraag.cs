@@ -5,7 +5,7 @@ namespace BL.Domein
     public class Vraag
     {
         private int vraagId;
-        private string tekst = string.Empty;
+        private string tekst = "";
         private bool isBeschikbaar;
         private Onderwerp onderwerp = null!;
 

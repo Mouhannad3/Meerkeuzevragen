@@ -16,7 +16,6 @@ namespace UI
         private OnderwerpManager onderwerpManager;
         private VraagManager vraagManager;
         private TestManager testManager;
-        private GebruikerManager gebruikerManager;
         private ResultaatManager resultaatManager;
         private ImportManager importManager;
 
@@ -52,9 +51,6 @@ namespace UI
             ITestRepository testRepository =
                 RepositoryFactory.GeefTestRepository(databaseType, connectionString);
 
-            IGebruikerRepository gebruikerRepository =
-                RepositoryFactory.GeefGebruikerRepository(databaseType, connectionString);
-
             IResultaatRepository resultaatRepository =
                 RepositoryFactory.GeefResultaatRepository(databaseType, connectionString);
 
@@ -77,15 +73,10 @@ namespace UI
                 onderwerpRepository
             );
 
-            gebruikerManager = new GebruikerManager(
-                gebruikerRepository
-            );
-
             resultaatManager = new ResultaatManager(
-            resultaatRepository,
-            testRepository,
-            gebruikerRepository,
-            bulkBestandslezer
+                resultaatRepository,
+                testRepository,
+                bulkBestandslezer
             );
 
             importManager = new ImportManager(
@@ -94,17 +85,16 @@ namespace UI
                 onderwerpRepository
             );
         }
+
         private void ButtonTestExporteren_Click(object sender, RoutedEventArgs e)
         {
             TestExporterenWindow window = new TestExporterenWindow(testManager);
-            window.Owner = this;
             window.ShowDialog();
         }
 
         private void ButtonOnderwerpToevoegen_Click(object sender, RoutedEventArgs e)
         {
             OnderwerpToevoegenWindow window = new OnderwerpToevoegenWindow(onderwerpManager);
-            window.Owner = this;
 
             if (window.ShowDialog() == true)
             {
@@ -112,11 +102,9 @@ namespace UI
             }
         }
 
-
         private void ButtonVragenImporteren_Click(object sender, RoutedEventArgs e)
         {
             VragenImporterenWindow window = new VragenImporterenWindow(onderwerpManager, importManager);
-            window.Owner = this;
 
             window.ShowDialog();
         }
@@ -124,22 +112,18 @@ namespace UI
         private void ButtonTestSamenstellen_Click(object sender, RoutedEventArgs e)
         {
             TestSamenstellenWindow window = new TestSamenstellenWindow(onderwerpManager, testManager);
-            window.Owner = this;
-            window.ShowDialog();
+            window.Owner = this;            window.ShowDialog();
         }
 
         private void ButtonTestUitvoeren_Click(object sender, RoutedEventArgs e)
         {
             TestUitvoerenWindow window = new TestUitvoerenWindow(testManager, resultaatManager);
-            window.Owner = this;
             window.ShowDialog();
         }
-
 
         private void ButtonBulkResultaten_Click(object sender, RoutedEventArgs e)
         {
             BulkResultatenWindow window = new BulkResultatenWindow(resultaatManager);
-            window.Owner = this;
             window.ShowDialog();
         }
     }

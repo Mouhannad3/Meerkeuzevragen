@@ -14,22 +14,16 @@ namespace BL.Managers
         private readonly IBulkResultaatBestandslezer bulkResultaatBestandslezer;
         private readonly IResultaatRepository resultaatRepository;
         private readonly ITestRepository testRepository;
-        private readonly IGebruikerRepository gebruikerRepository;
-
         public ResultaatManager(
             IResultaatRepository resultaatRepository,
             ITestRepository testRepository,
-            IGebruikerRepository gebruikerRepository,
             IBulkResultaatBestandslezer bulkResultaatBestandslezer)
-        {
+        { 
             this.resultaatRepository = resultaatRepository
                 ?? throw new ArgumentNullException(nameof(resultaatRepository));
 
             this.testRepository = testRepository
                 ?? throw new ArgumentNullException(nameof(testRepository));
-
-            this.gebruikerRepository = gebruikerRepository
-                ?? throw new ArgumentNullException(nameof(gebruikerRepository));
 
             this.bulkResultaatBestandslezer = bulkResultaatBestandslezer
                 ?? throw new ArgumentNullException(nameof(bulkResultaatBestandslezer));
@@ -59,13 +53,6 @@ namespace BL.Managers
                 throw new MeerkeuzeException("Test niet gevonden.");
             }
 
-            Gebruiker? gebruiker = gebruikerRepository.GeefGebruikerById(gebruikerId);
-
-            if (gebruiker == null)
-            {
-                throw new MeerkeuzeException("Gebruiker niet gevonden.");
-            }
-
             string opgeschoondeAntwoorden = antwoorden.Trim().ToUpper();
 
             if (opgeschoondeAntwoorden.Length != test.TestVragen.Count)
@@ -73,7 +60,7 @@ namespace BL.Managers
                 throw new MeerkeuzeException("Aantal antwoorden komt niet overeen met het aantal vragen in de test.");
             }
 
-            TestResultaat testResultaat = new TestResultaat(test, gebruiker, test.TestVragen.Count);
+            TestResultaat testResultaat = new TestResultaat(test, gebruikerId, test.TestVragen.Count);
 
             List<TestVraag> testVragen = test.TestVragen
                 .OrderBy(tv => tv.Volgorde)

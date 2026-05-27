@@ -5,7 +5,7 @@ namespace BL.Domein
     public class Onderwerp
     {
         private int onderwerpId;
-        private string naam = string.Empty;
+        private string naam = "";
 
         public int OnderwerpId
         {

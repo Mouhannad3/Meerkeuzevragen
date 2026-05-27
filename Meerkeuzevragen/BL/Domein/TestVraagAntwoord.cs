@@ -1,4 +1,5 @@
 ﻿using BL.Exceptions;
+using System.Text.RegularExpressions;
 
 namespace BL.Domein
 {
@@ -59,7 +60,7 @@ namespace BL.Domein
             {
                 char hoofdletter = char.ToUpper(value);
 
-                if (hoofdletter < 'A' || hoofdletter > 'Z')
+                if (!Regex.IsMatch(hoofdletter.ToString(), "^[A-Z]$"))
                 {
                     throw new MeerkeuzeException("Letter moet tussen A en Z liggen.");
                 }
