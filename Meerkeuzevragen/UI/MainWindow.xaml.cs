@@ -150,9 +150,9 @@ namespace UI
 
         private void ButtonBulkResultaten_Click(object sender, RoutedEventArgs e)
         {
-            BulkResultatenWindow window = new BulkResultatenWindow(resultaatManager);
-
+            BulkResultatenWindow window = new BulkResultatenWindow(resultaatManager, testManager);
             window.ShowDialog();
+          
         }
     }
 }

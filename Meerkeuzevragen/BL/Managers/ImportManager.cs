@@ -21,7 +21,8 @@ namespace BL.Managers
             this.vraagRepository = vraagRepository;
 
             this.onderwerpRepository = onderwerpRepository;
-                                }
+                                
+        }
 
         public void ImporteerVragen(string pad, int onderwerpId)
         {

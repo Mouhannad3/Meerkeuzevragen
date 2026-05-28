@@ -54,7 +54,7 @@ namespace UI
 
                 if (string.IsNullOrWhiteSpace(TextBoxPad.Text))
                 {
-                    MessageBox.Show("Geef eerst het pad van het bestand in.");
+                    MessageBox.Show("Geef eerst het pad van het bestand");
                     return;
                 }
 

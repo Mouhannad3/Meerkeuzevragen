@@ -39,28 +39,28 @@ namespace DL.Bestandslezer
 
                     string[] delen = lijn.Split(',');
 
-                    if (delen.Length != 3)
+                    if (delen.Length != 2)
                     {
                         throw new MeerkeuzeException(
-                            $"Ongeldig bulkbestand op lijn {lijnNummer}. Verwacht: TestId,IDGebruiker,Antwoorden."
+                            "Ongeldig bulkbestand op lijn " + lijnNummer +
+                            ". Verwacht: IDGebruiker,Antwoorden."
                         );
                     }
 
-                    if (!int.TryParse(delen[0].Trim(), out int testId))
+                    if (!int.TryParse(delen[0].Trim(), out int gebruikerId))
                     {
-                        throw new MeerkeuzeException($"TestId moet een getal zijn op lijn {lijnNummer}.");
+                        throw new MeerkeuzeException(
+                            "IDGebruiker moet een getal zijn op lijn " + lijnNummer + "."
+                        );
                     }
 
-                    if (!int.TryParse(delen[1].Trim(), out int gebruikerId))
-                    {
-                        throw new MeerkeuzeException($"IDGebruiker moet een getal zijn op lijn {lijnNummer}.");
-                    }
-
-                    string antwoorden = delen[2].Trim().ToUpper();
+                    string antwoorden = delen[1].Trim().ToUpper();
 
                     if (string.IsNullOrWhiteSpace(antwoorden))
                     {
-                        throw new MeerkeuzeException($"Antwoorden mogen niet leeg zijn op lijn {lijnNummer}.");
+                        throw new MeerkeuzeException(
+                            "Antwoorden mogen niet leeg zijn op lijn " + lijnNummer + "."
+                        );
                     }
 
                     resultaten.Add((gebruikerId, antwoorden));

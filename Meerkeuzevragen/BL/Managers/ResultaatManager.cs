@@ -1,11 +1,8 @@
 ﻿using BL.Domein;
 using BL.Exceptions;
 using BL.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BL.Managers
 {
@@ -14,17 +11,15 @@ namespace BL.Managers
         private readonly IBulkResultaatBestandslezer bulkResultaatBestandslezer;
         private readonly IResultaatRepository resultaatRepository;
         private readonly ITestRepository testRepository;
+
         public ResultaatManager(
             IResultaatRepository resultaatRepository,
             ITestRepository testRepository,
             IBulkResultaatBestandslezer bulkResultaatBestandslezer)
         {
             this.resultaatRepository = resultaatRepository;
-
             this.testRepository = testRepository;
-
             this.bulkResultaatBestandslezer = bulkResultaatBestandslezer;
-                
         }
 
         public TestResultaat VerbeterTest(int testId, int gebruikerId, string antwoorden)
@@ -44,7 +39,7 @@ namespace BL.Managers
                 throw new MeerkeuzeException("Antwoorden mogen niet leeg zijn.");
             }
 
-            Test test = testRepository.GeefTestById(testId);
+            Test? test = testRepository.GeefTestById(testId);
 
             if (test == null)
             {
@@ -116,11 +111,22 @@ namespace BL.Managers
 
             return resultaatRepository.GeefResultatenByGebruiker(gebruikerId);
         }
-        public List<TestResultaat> VerwerkBulkResultaten(string pad)
+
+        public List<TestResultaat> VerwerkBulkResultaten(string pad, Test test)
         {
             if (string.IsNullOrWhiteSpace(pad))
             {
                 throw new MeerkeuzeException("Pad mag niet leeg zijn.");
+            }
+
+            if (test == null)
+            {
+                throw new MeerkeuzeException("Kies eerst een test.");
+            }
+
+            if (test.TestId <= 0)
+            {
+                throw new MeerkeuzeException("Ongeldige test.");
             }
 
             List<(int GebruikerId, string Antwoorden)> lijnen =
@@ -136,7 +142,7 @@ namespace BL.Managers
             foreach (var lijn in lijnen)
             {
                 TestResultaat resultaat = VerbeterTest(
-                    0,
+                    test.TestId,
                     lijn.GebruikerId,
                     lijn.Antwoorden
                 );

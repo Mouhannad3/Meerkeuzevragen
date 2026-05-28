@@ -1,58 +1,40 @@
 ﻿<Window x:Class="UI.BulkResultatenWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Bulk resultaten verwerken" Height="420" Width="650">
+        Title="Bulk resultaten verwerken"
+        Height="260"
+        Width="520">
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0"
-                   Text="Bulk resultaten verwerken"
-                   FontSize="18"
-                   FontWeight="Bold"
-                   Margin="0,0,0,15"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="1" Margin="0,0,0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="90"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Test:"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" Name="ComboBoxTesten"/>
 
-            <Label Grid.Column="0"
-                   Content="Bestand:"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Bestandspad:"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="TextBoxPad"/>
 
-            <TextBox Grid.Column="1"
-                     Name="TextBoxPad"
-                     Height="25"/>
-        </Grid>
+        <Button Grid.Row="3"
+                Grid.Column="0"
+                Content="Verwerken"
+                Width="110"
+                Click="ButtonVerwerken_Click"/>
 
-        <DataGrid Grid.Row="3"
-                  Name="DataGridResultaten"
-                  AutoGenerateColumns="True"
-                  IsReadOnly="True"/>
-
-        <Grid Grid.Row="4" Margin="0,15,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="90"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="1"
-                    Content="Sluiten"
-                    Margin="5"
-                    Click="ButtonSluiten_Click"/>
-
-            <Button Grid.Column="2"
-                    Content="Verwerken"
-                    Margin="5"
-                    Click="ButtonVerwerken_Click"/>
-        </Grid>
+        <Button Grid.Row="3"
+                Grid.Column="1"
+                Content="Sluiten"
+                Width="110"
+                HorizontalAlignment="Right"
+                Click="ButtonSluiten_Click"/>
     </Grid>
 </Window>
