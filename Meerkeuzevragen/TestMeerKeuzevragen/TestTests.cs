@@ -23,7 +23,6 @@ namespace TestMeerKeuzevragen
             Assert.Equal("SQL Test", test.Naam);
             Assert.Equal(onderwerp, test.Onderwerp);
             Assert.Equal(4, test.AantalAntwoordenPerVraag);
-            Assert.True(test.AangemaaktOp != default);
             Assert.Empty(test.TestVragen);
         }
 

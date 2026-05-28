@@ -11,7 +11,7 @@ namespace BL.Interfaces
     {
         void VoegTestResultaatToe(TestResultaat testResultaat);
 
-        TestResultaat? GeefTestResultaatById(int testResultaatId);
+        TestResultaat GeefTestResultaatById(int testResultaatId);
 
         List<TestResultaat> GeefResultatenByTest(int testId);
 

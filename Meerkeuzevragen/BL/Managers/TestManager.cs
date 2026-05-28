@@ -124,24 +124,32 @@ namespace BL.Managers
 
         private List<Vraag> KiesVragenMetZelfdeAantalAntwoorden(IReadOnlyList<Vraag> vragen, int aantalVragen)
         {
-            List<IGrouping<int, Vraag>> groepen = vragen
-                .GroupBy(v => v.Antwoorden.Count)
-                .ToList();
-
-            IGrouping<int, Vraag>? gekozenGroep = groepen
-                .FirstOrDefault(g => g.Count() >= aantalVragen);
-
-            if (gekozenGroep == null)
-            {
-                throw new MeerkeuzeException("Er zijn niet genoeg vragen met hetzelfde aantal antwoorden.");
-            }
-
             Random random = new Random();
 
-            return gekozenGroep
-                .OrderBy(v => random.Next())
-                .Take(aantalVragen)
-                .ToList();
+            foreach (Vraag vraag in vragen)
+            {
+                int aantalAntwoorden = vraag.Antwoorden.Count;
+
+                List<Vraag> vragenMetZelfdeAantalAntwoorden = new();
+
+                foreach (Vraag andereVraag in vragen)
+                {
+                    if (andereVraag.Antwoorden.Count == aantalAntwoorden)
+                    {
+                        vragenMetZelfdeAantalAntwoorden.Add(andereVraag);
+                    }
+                }
+
+                if (vragenMetZelfdeAantalAntwoorden.Count >= aantalVragen)
+                {
+                    return vragenMetZelfdeAantalAntwoorden
+                        .OrderBy(v => random.Next())
+                        .Take(aantalVragen)
+                        .ToList();
+                }
+            }
+
+            throw new MeerkeuzeException("Er zijn niet genoeg vragen met hetzelfde aantal antwoorden.");
         }
         public string MaakExportTekst(int testId)
         {

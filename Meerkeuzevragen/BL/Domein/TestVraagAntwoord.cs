@@ -6,8 +6,8 @@ namespace BL.Domein
     public class TestVraagAntwoord
     {
         private int testVraagAntwoordId;
-        private TestVraag testVraag = null!;
-        private Antwoord antwoord = null!;
+        private TestVraag testVraag;
+        private Antwoord antwoord;
         private char letter;
         private int volgorde;
 
