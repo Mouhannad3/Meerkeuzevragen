@@ -15,15 +15,13 @@ namespace BL.Managers
             IVraagRepository vraagRepository,
             IOnderwerpRepository onderwerpRepository)
         {
-            this.meerkeuzeBestandslezer = meerkeuzeBestandslezer
-                ?? throw new ArgumentNullException(nameof(meerkeuzeBestandslezer));
+            this.meerkeuzeBestandslezer = meerkeuzeBestandslezer;
+              
 
-            this.vraagRepository = vraagRepository
-                ?? throw new ArgumentNullException(nameof(vraagRepository));
+            this.vraagRepository = vraagRepository;
 
-            this.onderwerpRepository = onderwerpRepository
-                ?? throw new ArgumentNullException(nameof(onderwerpRepository));
-        }
+            this.onderwerpRepository = onderwerpRepository;
+                                }
 
         public void ImporteerVragen(string pad, int onderwerpId)
         {

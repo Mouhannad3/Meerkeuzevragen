@@ -5,14 +5,14 @@ namespace DL.Bestandslezer
 {
     public class BulkResultaatBestandslezer : IBulkResultaatBestandslezer
     {
-        public List<(int TestId, int GebruikerId, string Antwoorden)> LeesBulkResultaten(string pad)
+        public List<(int GebruikerId, string Antwoorden)> LeesBulkResultaten(string pad)
         {
             if (string.IsNullOrWhiteSpace(pad))
             {
                 throw new MeerkeuzeException("Pad mag niet leeg zijn.");
             }
 
-            List<(int TestId, int GebruikerId, string Antwoorden)> resultaten = new();
+            List<(int GebruikerId, string Antwoorden)> resultaten = new();
 
             try
             {
@@ -63,7 +63,7 @@ namespace DL.Bestandslezer
                         throw new MeerkeuzeException($"Antwoorden mogen niet leeg zijn op lijn {lijnNummer}.");
                     }
 
-                    resultaten.Add((testId, gebruikerId, antwoorden));
+                    resultaten.Add((gebruikerId, antwoorden));
                 }
             }
             catch (MeerkeuzeException)

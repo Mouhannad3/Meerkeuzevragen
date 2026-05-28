@@ -5,8 +5,8 @@ namespace BL.Domein
     public class TestVraag
     {
         private int testVraagId;
-        private Test test = null!;
-        private Vraag vraag = null!;
+        private Test test;
+        private Vraag vraag;
         private int volgorde;
 
         private readonly List<TestVraagAntwoord> testVraagAntwoorden = new();

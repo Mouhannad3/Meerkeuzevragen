@@ -40,7 +40,7 @@ namespace DL.Repositories
             }
         }
 
-        public Onderwerp? GeefOnderwerpById(int onderwerpId)
+        public Onderwerp GeefOnderwerpById(int onderwerpId)
         {
             string sql = @"SELECT onderwerp_id, naam
                            FROM Onderwerp
@@ -86,7 +86,7 @@ namespace DL.Repositories
             return MapOnderwerp(reader);
         }
 
-        public IReadOnlyList<Onderwerp> GeefOnderwerpen()
+        public List<Onderwerp> GeefOnderwerpen()   
         {
             List<Onderwerp> onderwerpen = new();
 

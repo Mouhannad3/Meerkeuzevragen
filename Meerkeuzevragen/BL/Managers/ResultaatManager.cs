@@ -18,15 +18,13 @@ namespace BL.Managers
             IResultaatRepository resultaatRepository,
             ITestRepository testRepository,
             IBulkResultaatBestandslezer bulkResultaatBestandslezer)
-        { 
-            this.resultaatRepository = resultaatRepository
-                ?? throw new ArgumentNullException(nameof(resultaatRepository));
+        {
+            this.resultaatRepository = resultaatRepository;
 
-            this.testRepository = testRepository
-                ?? throw new ArgumentNullException(nameof(testRepository));
+            this.testRepository = testRepository;
 
-            this.bulkResultaatBestandslezer = bulkResultaatBestandslezer
-                ?? throw new ArgumentNullException(nameof(bulkResultaatBestandslezer));
+            this.bulkResultaatBestandslezer = bulkResultaatBestandslezer;
+                
         }
 
         public TestResultaat VerbeterTest(int testId, int gebruikerId, string antwoorden)
@@ -46,7 +44,7 @@ namespace BL.Managers
                 throw new MeerkeuzeException("Antwoorden mogen niet leeg zijn.");
             }
 
-            Test? test = testRepository.GeefTestById(testId);
+            Test test = testRepository.GeefTestById(testId);
 
             if (test == null)
             {
@@ -125,7 +123,7 @@ namespace BL.Managers
                 throw new MeerkeuzeException("Pad mag niet leeg zijn.");
             }
 
-            List<(int TestId, int GebruikerId, string Antwoorden)> lijnen =
+            List<(int GebruikerId, string Antwoorden)> lijnen =
                 bulkResultaatBestandslezer.LeesBulkResultaten(pad);
 
             if (lijnen.Count == 0)
@@ -138,7 +136,7 @@ namespace BL.Managers
             foreach (var lijn in lijnen)
             {
                 TestResultaat resultaat = VerbeterTest(
-                    lijn.TestId,
+                    0,
                     lijn.GebruikerId,
                     lijn.Antwoorden
                 );

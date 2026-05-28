@@ -15,8 +15,8 @@ namespace BL.Managers
 
         public OnderwerpManager(IOnderwerpRepository onderwerpRepository)
         {
-            this.onderwerpRepository = onderwerpRepository
-                ?? throw new ArgumentNullException(nameof(onderwerpRepository));
+            this.onderwerpRepository = onderwerpRepository;
+             
         }
 
         public void VoegOnderwerpToe(Onderwerp onderwerp)

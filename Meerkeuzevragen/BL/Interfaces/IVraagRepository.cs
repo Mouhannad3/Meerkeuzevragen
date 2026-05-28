@@ -15,11 +15,11 @@ namespace BL.Interfaces
 
         Vraag? GeefVraagById(int vraagId);
 
-        IReadOnlyList<Vraag> GeefVragenByOnderwerp(int onderwerpId);
+        List<Vraag> GeefVragenByOnderwerp(int onderwerpId);
 
-        IReadOnlyList<Vraag> GeefBeschikbareVragenByOnderwerp(int onderwerpId);
+        List<Vraag> GeefBeschikbareVragenByOnderwerp(int onderwerpId);
 
-        IReadOnlyList<Vraag> GeefBeschikbareVragenByOnderwerpEnAantalAntwoorden(int onderwerpId, int aantalAntwoorden);
+        List<Vraag> GeefBeschikbareVragenByOnderwerpEnAantalAntwoorden(int onderwerpId, int aantalAntwoorden);
 
         bool BestaatVraagMetTekst(string tekst, int onderwerpId, int? vraagId);
     }

@@ -13,9 +13,9 @@ namespace BL.Interfaces
 
         Test? GeefTestById(int testId);
 
-        IReadOnlyList<Test> GeefTesten();
+        List<Test> GeefTesten();
 
-        IReadOnlyList<Test> GeefTestenByOnderwerp(int onderwerpId);
+        List<Test> GeefTestenByOnderwerp(int onderwerpId);
 
         bool BestaatTestMetNaam(string naam);
     }

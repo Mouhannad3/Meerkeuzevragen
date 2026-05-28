@@ -111,7 +111,7 @@ namespace DL.Repositories
             return test;
         }
 
-        public IReadOnlyList<Test> GeefTesten()
+        public List<Test> GeefTesten() 
         {
             List<Test> testen = new();
 
@@ -135,7 +135,7 @@ namespace DL.Repositories
             return testen;
         }
 
-        public IReadOnlyList<Test> GeefTestenByOnderwerp(int onderwerpId)
+        public List<Test> GeefTestenByOnderwerp(int onderwerpId)
         {
             List<Test> testen = new();
 

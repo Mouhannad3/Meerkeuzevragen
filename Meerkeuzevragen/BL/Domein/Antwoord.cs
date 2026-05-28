@@ -5,7 +5,7 @@ namespace BL.Domein
     public class Antwoord
     {
         private int antwoordId;
-        private string tekst = "";
+        private string tekst;
         private bool isCorrect;
 
         public int AntwoordId

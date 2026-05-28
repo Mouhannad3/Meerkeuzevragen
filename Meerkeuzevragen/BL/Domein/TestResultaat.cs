@@ -5,7 +5,7 @@ namespace BL.Domein
     public class TestResultaat
     {
         private int testResultaatId;
-        private Test test = null!;
+        private Test test;
         private int gebruikerId;
         private int score;
         private int totaalAantalVragen;

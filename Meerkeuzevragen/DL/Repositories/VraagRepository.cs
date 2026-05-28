@@ -120,7 +120,7 @@ namespace DL.Repositories
             return vraag;
         }
 
-        public IReadOnlyList<Vraag> GeefVragenByOnderwerp(int onderwerpId)
+        public List<Vraag> GeefVragenByOnderwerp(int onderwerpId)
         {
             List<Vraag> vragen = new();
 
@@ -154,7 +154,7 @@ namespace DL.Repositories
             return vragen;
         }
 
-        public IReadOnlyList<Vraag> GeefBeschikbareVragenByOnderwerp(int onderwerpId)
+        public List<Vraag> GeefBeschikbareVragenByOnderwerp(int onderwerpId)
         {
             List<Vraag> vragen = new();
 
@@ -188,8 +188,8 @@ namespace DL.Repositories
 
             return vragen;
         }
-
-        public IReadOnlyList<Vraag> GeefBeschikbareVragenByOnderwerpEnAantalAntwoorden(int onderwerpId, int aantalAntwoorden)
+            
+        public List<Vraag> GeefBeschikbareVragenByOnderwerpEnAantalAntwoorden(int onderwerpId, int aantalAntwoorden)
         {
             List<Vraag> vragen = new();
 

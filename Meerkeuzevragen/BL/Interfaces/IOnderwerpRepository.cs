@@ -11,11 +11,11 @@ namespace BL.Interfaces
     {
         void VoegOnderwerpToe(Onderwerp onderwerp);
 
-        Onderwerp? GeefOnderwerpById(int onderwerpId);
+        Onderwerp GeefOnderwerpById(int onderwerpId);
 
-        Onderwerp? GeefOnderwerpByNaam(string naam);
+        Onderwerp GeefOnderwerpByNaam(string naam);
 
-        IReadOnlyList<Onderwerp> GeefOnderwerpen();
+        List<Onderwerp> GeefOnderwerpen();
 
         bool BestaatOnderwerpMetNaam(string naam);
     }

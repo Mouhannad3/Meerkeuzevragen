@@ -8,6 +8,6 @@ namespace BL.Interfaces
 {
     public interface IBulkResultaatBestandslezer
     {
-        List<(int TestId, int GebruikerId, string Antwoorden)> LeesBulkResultaten(string pad);
+        List<(int GebruikerId, string Antwoorden)> LeesBulkResultaten(string pad);
     }
 }

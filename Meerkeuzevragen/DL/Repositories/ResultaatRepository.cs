@@ -97,7 +97,7 @@ namespace DL.Repositories
             return resultaat;
         }
 
-        public IReadOnlyList<TestResultaat> GeefResultatenByTest(int testId)
+        public List<TestResultaat> GeefResultatenByTest(int testId)
         {
             List<TestResultaat> resultaten = new();
 
@@ -128,7 +128,7 @@ namespace DL.Repositories
             return resultaten;
         }
 
-        public IReadOnlyList<TestResultaat> GeefResultatenByGebruiker(int gebruikerId)
+        public List<TestResultaat> GeefResultatenByGebruiker(int gebruikerId)
         {
             List<TestResultaat> resultaten = new();
 

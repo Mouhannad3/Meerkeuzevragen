@@ -5,9 +5,9 @@ namespace BL.Domein
     public class Vraag
     {
         private int vraagId;
-        private string tekst = "";
+        private string tekst;
         private bool isBeschikbaar;
-        private Onderwerp onderwerp = null!;
+        private Onderwerp onderwerp;
 
         private readonly List<Antwoord> antwoorden = new();
 
@@ -107,7 +107,9 @@ namespace BL.Domein
             {
                 throw new MeerkeuzeException("Een vraag moet minstens twee antwoorden hebben.");
             }
-
+            //dat is al gecontroleerd in VoegAntwoordToe,
+            //maar we willen ook zeker zijn dat er niet per ongeluk een vraag zonder antwoorden wordt opgeslagen (bv: alle antwoorden zijn fout)
+            //
             if (antwoorden.Count(a => a.IsCorrect) != 1)
             {
                 throw new MeerkeuzeException("Een vraag moet exact één juist antwoord hebben.");

@@ -5,8 +5,8 @@ namespace BL.Domein
     public class GebruikerAntwoord
     {
         private int gebruikerAntwoordId;
-        private TestResultaat testResultaat = null!;
-        private TestVraag testVraag = null!;
+        private TestResultaat testResultaat;
+        private TestVraag testVraag;
         private char gekozenLetter;
         private bool isCorrect;
 

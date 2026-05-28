@@ -20,14 +20,11 @@ namespace BL.Managers
             IVraagRepository vraagRepository,
             IOnderwerpRepository onderwerpRepository)
         {
-            this.testRepository = testRepository
-                ?? throw new ArgumentNullException(nameof(testRepository));
+            this.testRepository = testRepository;
 
-            this.vraagRepository = vraagRepository
-                ?? throw new ArgumentNullException(nameof(vraagRepository));
+            this.vraagRepository = vraagRepository;
 
-            this.onderwerpRepository = onderwerpRepository
-                ?? throw new ArgumentNullException(nameof(onderwerpRepository));
+            this.onderwerpRepository = onderwerpRepository;
         }
 
         public Test StelTestSamen(string naam, int onderwerpId, int aantalVragen)

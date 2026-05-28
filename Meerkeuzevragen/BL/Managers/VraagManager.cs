@@ -16,11 +16,9 @@ namespace BL.Managers
 
         public VraagManager(IVraagRepository vraagRepository, IOnderwerpRepository onderwerpRepository)
         {
-            this.vraagRepository = vraagRepository
-                ?? throw new ArgumentNullException(nameof(vraagRepository));
+            this.vraagRepository = vraagRepository;
 
-            this.onderwerpRepository = onderwerpRepository
-                ?? throw new ArgumentNullException(nameof(onderwerpRepository));
+            this.onderwerpRepository = onderwerpRepository;
         }
 
         public void VoegVraagToe(Vraag vraag)

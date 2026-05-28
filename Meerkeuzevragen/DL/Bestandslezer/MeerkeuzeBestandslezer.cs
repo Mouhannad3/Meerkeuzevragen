@@ -20,14 +20,12 @@ namespace DL.Bestandslezer
 
             List<string> lijnen = LeesLijnen(pad);
 
-            bool heeftCorrectPerVraag = HeeftCorrectPerVraag(lijnen);
-            bool heeftAntwoordenOpEinde = HeeftAntwoordenOpEinde(lijnen);
 
-            if (heeftCorrectPerVraag)
+            if (HeeftCorrectPerVraag(lijnen))
             {
                 return LeesMetCorrectPerVraag(lijnen, onderwerp);
             }
-            else if (heeftAntwoordenOpEinde)
+            else if (HeeftAntwoordenOpEinde(lijnen))
             {
                 return LeesMetAntwoordenOpEinde(lijnen, onderwerp);
             }

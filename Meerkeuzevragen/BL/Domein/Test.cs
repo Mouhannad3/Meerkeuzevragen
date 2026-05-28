@@ -5,10 +5,10 @@ namespace BL.Domein
     public class Test
     {
         private int testId;
-        private string naam = "";
+        private string naam;
         private DateTime aangemaaktOp;
         private int aantalAntwoordenPerVraag;
-        private Onderwerp onderwerp = null!;
+        private Onderwerp onderwerp;
 
         private readonly List<TestVraag> testVragen = new();
 

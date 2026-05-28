@@ -13,8 +13,8 @@ namespace BL.Interfaces
 
         TestResultaat? GeefTestResultaatById(int testResultaatId);
 
-        IReadOnlyList<TestResultaat> GeefResultatenByTest(int testId);
+        List<TestResultaat> GeefResultatenByTest(int testId);
 
-        IReadOnlyList<TestResultaat> GeefResultatenByGebruiker(int gebruikerId);
+        List<TestResultaat> GeefResultatenByGebruiker(int gebruikerId);
     }
 }

@@ -9,9 +9,9 @@ namespace UI
 {
     public partial class MainWindow : Window
     {
-        private string connectionString = "";
-        private string databaseType = "";
-        private string fileType = "";
+        private string connectionString;
+        private string databaseType;
+        private string fileType;
 
         private OnderwerpManager onderwerpManager;
         private VraagManager vraagManager;
